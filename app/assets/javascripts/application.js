@@ -30,6 +30,8 @@ $(document).ready(function() {
   $('.open-menu').click(function(e) {
     e.preventDefault();
 
+    $('nav#menu').height($('section#main').innerHeight());
+
     $('nav#menu').show()
     $('nav#menu').addClass('shown');
     return false;

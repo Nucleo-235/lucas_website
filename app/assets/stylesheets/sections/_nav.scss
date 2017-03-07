@@ -5,7 +5,7 @@ nav#menu {
   margin-right: -100vw;
   z-index: 1001;
 
-  background-color: transparentize($base-green, 0.1);
+  background-color: transparentize($base-black, 0.1);
 
   position: fixed;
   height: auto;
@@ -28,38 +28,44 @@ nav#menu {
   ul {
     clear: both;
     float: right;
+    margin-left: $sections-margin-side;
     margin-right: $sections-margin-side;
     margin-top: $menu-margin-vertical;
+    display: block;
+    width: 100%;
     list-style: none;
 
     &:last-child {
       margin-bottom: 2 * $menu-margin-vertical;
     }
-    &.social {
-      a {
-        margin-right: 0px;
-      }
-    }
 
     li {
-      text-align: right;
+      text-align: center;
+      margin-top: $menu-margin-vertical;
       &:not(:last-child) {
         margin-bottom: 20px;
       }
 
       a {
-        @include standard_link_button(transparent, $base-gray-light);
+        @include standard_link_button(transparent, $base-white);
 
         margin-right: -10px;
-        padding: 5px 5px 0px 15px;
+        padding: 5px 15px;
         font-family: $title-text-font-family;
-        font-size: 50px;
-        line-height: 50px;
-        letter-spacing: $title-letter-spacing;
+        font-size: 3em;
+        line-height: 1em;
+        letter-spacing: $menu-letter-spacing;
 
         &.active {
           background-color: $base-gray-light;
           color: $base-black;
+        }
+
+        &.action {
+          background-color: $base-green;
+          color: $base-black;
+          font-size: 2em;
+          text-transform: uppercase;
         }
       }
     }

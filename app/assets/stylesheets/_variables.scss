@@ -1,12 +1,12 @@
 $sections-margin-side: 75px;
 $sections-margin-vertical: 70px;
-$base-bg-header: #0a2a3b;
+$base-bg-header: transparent;
 $base-black: #0a0a0a;
 $base-white: #fff;
 $base-gray-light: #d1cfcd;
 $base-gray: #3d3d3d;
-$base-blue-greenish: #13928a;
-$base-green: #00968f;
+$base-blue-greenish: #37bcd4;
+$base-green: #21ffa6;
 $base-yellow: #fcca00;
 
 $base-text-white: darken($base-white, 15%);
@@ -25,4 +25,4 @@ $body-text-font-family: 'Raleway', "Helvetica Neue", "Roboto", "Segoe UI", sans-
 $title-text-font-family: 'Raleway', "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
 $title-2-text-font-family: 'Raleway', "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
 
-$title-letter-spacing: 7em;
+$menu-letter-spacing: 0.1em;

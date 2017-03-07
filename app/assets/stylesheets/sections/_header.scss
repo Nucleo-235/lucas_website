@@ -1,7 +1,7 @@
 header {
   width: 100%;
   height: $header-height;
-  background-color: transparent;
+  background-color: $base-bg-header;
   position: fixed;
   z-index: 1000;
   top: 0px;

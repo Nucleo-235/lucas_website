@@ -1,0 +1,29 @@
+footer {
+  width: 100%;
+  text-align: center;
+
+  display: block;
+  background-color: $base-blue-greenish;
+  color: $base-white;
+
+  ul.social {
+    list-style: none;
+    display: block;
+    padding: 25px 0px 15px 0px;
+
+    li {
+      display: inline-block;
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0px;
+      }
+      a {
+        display: block;
+      }
+      img {
+        max-width: 20px;
+        height: auto;
+      }
+    }
+  }
+}

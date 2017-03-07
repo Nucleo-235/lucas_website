@@ -8,4 +8,4 @@ nav#menu
     li
       a href="#about" = localized_value_string_read(@global_page, 'titles.about', 'About')
     li
-      a href="#contact" = localized_value_string_read(@global_page, 'titles.contact', 'Text me now')
+      a.action href="#text-now" = localized_value_string_read(@global_page, 'titles.text', 'Text me now')
