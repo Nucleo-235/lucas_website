@@ -28,5 +28,5 @@ class Admin < User
       admin.save!
     end
   end
-  
+
 end

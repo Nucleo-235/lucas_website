@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @project.name
+p
+  strong Type:
+  = @project.type
+p
+  strong Summary:
+  = @project.summary
+p
+  strong Thumb image:
+  = @project.thumb_image
+p
+  strong Logo image:
+  = @project.logo_image
+p
+  strong Sort order:
+  = @project.sort_order
+p
+  strong Slug:
+  = @project.slug
+
+= link_to 'Edit', edit_project_path(@project)
+'|
+= link_to 'Back', projects_path

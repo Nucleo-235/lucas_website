@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Project:
+  = @project_content.project
+p
+  strong Type:
+  = @project_content.type
+p
+  strong Title:
+  = @project_content.title
+p
+  strong Value:
+  = @project_content.value
+p
+  strong Link:
+  = @project_content.link
+
+= link_to 'Edit', edit_project_content_path(@project_content)
+'|
+= link_to 'Back', project_contents_path

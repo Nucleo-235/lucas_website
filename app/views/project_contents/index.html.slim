@@ -1,0 +1,29 @@
+h1 Listing project_contents
+
+table
+  thead
+    tr
+      th Project
+      th Type
+      th Title
+      th Value
+      th Link
+      th
+      th
+      th
+
+  tbody
+    - @project_contents.each do |project_content|
+      tr
+        td = project_content.project
+        td = project_content.type
+        td = project_content.title
+        td = project_content.value
+        td = project_content.link
+        td = link_to 'Show', project_content
+        td = link_to 'Edit', edit_project_content_path(project_content)
+        td = link_to 'Destroy', project_content, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Project content', new_project_content_path

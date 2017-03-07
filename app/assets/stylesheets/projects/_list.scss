@@ -1,0 +1,98 @@
+#portfolio {
+  padding-left: 0px;
+  padding-right: 0px;
+  vertical-align: top;
+
+  .project-item {
+    vertical-align: top;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+
+    a {
+
+    }
+    .info {
+      display: none;
+      position: absolute;
+      width: 100%;
+      top:0px;
+      bottom:0px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        top:0px;
+        bottom:0px;
+        background-color: transparentize($base-green, 0.1);
+      }
+      .name {
+        display: block;
+        position: relative;
+        width: 80%;
+        margin: auto;
+        margin-top: 30%;
+        border-bottom: 1px solid $base-white;
+
+        font-family: $title-text-font-family;
+        font-size: 40px;
+        font-weight: normal;
+        color: $base-white;
+      }
+      .summary {
+        display: none;
+      }
+    }
+
+    &:hover {
+      .info {
+        display: block;
+      }
+    }
+
+    .images {
+      position: relative;
+      img {
+         max-width: 100%;
+      }
+
+      .logo-image {
+        position: absolute;
+        top:25%;
+        bottom:25%;
+        left:0px;
+        right:0px;
+        text-align: center;
+
+        img {
+          max-height: 100%;
+          width: auto;
+          display: block;
+          vertical-align: middle;
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  #new-project {
+    display: inline-block;
+    width: 100%;
+    padding: 30px 5%;
+  }
+
+  @include mq($from: tablet) {
+    .project-item {
+      width: 50%;
+    }
+
+    &.odd {
+      .project-item {
+        &:last-child {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
