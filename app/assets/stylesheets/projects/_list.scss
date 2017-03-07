@@ -4,20 +4,24 @@
   vertical-align: top;
 
   .project-item {
-    vertical-align: top;
     display: inline-block;
     width: 100%;
+    padding-top: 50%;
     position: relative;
+    overflow: hidden;
 
     a {
-
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0%;
     }
     .info {
       display: none;
       position: absolute;
       width: 100%;
+      height: 100%;
       top:0px;
-      bottom:0px;
 
       &:before {
         content: "";
@@ -25,7 +29,7 @@
         width: 100%;
         top:0px;
         bottom:0px;
-        background-color: transparentize($base-green, 0.1);
+        background-color: transparentize($base-blue-greenish, 0.1);
       }
       .name {
         display: block;
@@ -53,11 +57,25 @@
 
     .images {
       position: relative;
-      img {
-         max-width: 100%;
+      width: 100%;
+      height: 100%;
+
+      .thumb-image {
+        background-repeat: no-repeat;
+        background-position: center center;
+        @include bg_size(cover);
+
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        img {
+          display: none;
+        }
       }
 
       .logo-image {
+        background-image: none !important;
         position: absolute;
         top:25%;
         bottom:25%;
@@ -85,12 +103,14 @@
   @include mq($from: tablet) {
     .project-item {
       width: 50%;
+      padding-top: 25%;
     }
 
     &.odd {
       .project-item {
         &:last-child {
           width: 100%;
+          padding-top: 50%;
         }
       }
     }
