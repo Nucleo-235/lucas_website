@@ -8,10 +8,10 @@
   vertical-align: bottom;
   overflow: hidden;
 
-  background-image: image_url('Capa-portifa.gif');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-origin: content-box;
+  background-image: image_url('Capa-portifa-loop.gif');
+  background-repeat: repeat;
+  // background-position: center center;
+  // background-origin: content-box;
   @include bg_size(cover);
 
   h1, h2, h3 {
