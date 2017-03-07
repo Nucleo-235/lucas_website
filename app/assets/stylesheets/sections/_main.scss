@@ -1,0 +1,62 @@
+#main {
+  padding-left: 0px;
+  padding-right: 0px;
+  min-height: 350px;
+  height: auto;
+
+  text-align: center;
+  vertical-align: bottom;
+  overflow: hidden;
+
+  background-image: image_url('Capa-portifa.gif');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-origin: content-box;
+  @include bg_size(cover);
+
+  h1, h2, h3 {
+    font-family: $body-text-font-family;
+    display: block;
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  .content {
+    text-align: left;
+    max-width: 720px;
+    margin: auto;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    overflow: hidden;
+  }
+
+  h1 {
+    float: left;
+    width: 100%;
+    text-align: left;
+    img {
+      max-width: 80%;
+    }
+  }
+  h2 {
+    float: left;
+    display: block;
+    text-align: left;
+
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-weight: normal;
+    img {
+      max-width: 100%;
+    }
+  }
+  .actions {
+    position: relative;
+    bottom: 30px;
+
+    width: 100%;
+    text-align: center;
+  }
+}

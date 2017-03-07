@@ -1,0 +1,11 @@
+nav#menu
+  a.close-menu href="" title="#{t('global.close')}"
+    img src="#{image_path('icone-fechar-janela.png')}" alt="#{t('global.close')}"
+
+  ul.internal
+    li
+      a.open-portfolio href="#portfolio" = localized_value_string_read(@global_page, 'menu.items.portfolio', 'Work')
+    li
+      a href="#about" = localized_value_string_read(@global_page, 'titles.about', 'About')
+    li
+      a href="#contact" = localized_value_string_read(@global_page, 'titles.contact', 'Text me now')

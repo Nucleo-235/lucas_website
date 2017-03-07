@@ -1,0 +1,11 @@
+section#main
+  .content
+    h1
+      img src="#{image_path('lucascordeiro.png')}" alt="Lucas Cordeiro"
+    h2
+      img src="#{image_path('creativedirector.png')}" alt="Creative Art Director"
+      / = localized_value_string(@global_page, 'main.subtitle', 'Creative Art Director')
+
+  .actions
+    a.next-section href="#portfolio"
+      img src="#{image_path('arrow-scroll.png')}" alt="Next"

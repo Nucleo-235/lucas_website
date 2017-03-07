@@ -8,7 +8,7 @@ gem 'active_model_serializers'
 gem 'http_accept_language'
 gem 'globalize', '~> 5.0.0'
 gem 'responders'
-gem 'aws-ses', '~> 0.6.0', require: 'aws/ses'
+
 gem 'redis'
 gem 'redis-namespace'
 gem 'sidekiq', '~> 3.2.6'

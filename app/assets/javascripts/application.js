@@ -17,8 +17,96 @@
 //= require best_in_place
 //= require inplace_editing
 //= require utils
+//= require cloning
+//= require desktop
 
 $(document).ready(function() {
   /* Activating Inplace Editor */
   InplaceEditingManager.bindAll();
+
+  var currentStrategy = desktopStrategy;
+  currentStrategy.onTurningOn();
+
+  $('.open-menu').click(function(e) {
+    e.preventDefault();
+
+    $('nav#menu').show()
+    $('nav#menu').addClass('shown');
+    return false;
+  });
+
+  $('.close-menu').click(function(e) {
+    e.preventDefault();
+
+    $('nav#menu').hide();
+    $('nav#menu').removeClass('shown');
+    return false;
+  });
+
+  $('.open-project').click(function(e) {
+    return currentStrategy.openProject(e, this);
+  });
+
+  $('.open-new-project').click(function(e) {
+    return currentStrategy.openNewProject(e, this);
+  });
+  $('.open-related-portfolio').click(function(e) {
+    return currentStrategy.openRelatedPortfolio(e, this);
+  });
+
+  $('nav#menu .internal a').click(function(e) {
+    $('nav#menu').hide();
+    $('nav#menu').removeClass('shown');
+
+    $('nav#menu .internal a').removeClass('active');
+    $(this).addClass('active');
+  });
+
+  $('section#people .goto-next').click(function(e) {
+    e.preventDefault();
+
+    $('section#people ul').slick('slickNext');
+
+    return false;
+  });
 });
+
+function preventDefaultIfPossible(e) {
+  try {
+    e.preventDefault();
+  } catch(ex) { }
+}
+
+function preventDefaultWithHash(e, self) {
+  preventDefaultIfPossible(e);
+  var link = $(self);
+  if (link && link.length > 0)
+    window.location.hash = link.attr('href');
+}
+
+function getProjectIDs() {
+  var links = $('#portfolio nav .projects .project a');
+  var IDs = [];
+  for (var i = 0; i < links.length; i++) {
+    var link = $(links[i]);
+    IDs.push(link.attr('href').substring(1));
+  }
+  return IDs;
+}
+
+function setNewProjectValues(clonedElement, newData) {
+  var element = $(clonedElement);
+  if (element.hasClass('admin')) {
+    element.find('.name-value span.best_in_place').text(newData.name);
+    element.find('.name-value span.best_in_place').attr('data-bip-value');
+    element.find('.summary-value span.best_in_place').html(newData.summary_html);
+    element.find('.summary-value span.best_in_place').attr('data-bip-value');
+    element.find('.image-value img').attr('src', newData.image);
+    element.find('.thumb_image-value img').attr('src', newData.thumb_image);
+  } else {
+    element.find('.name-value').text(newData.name);
+    element.find('.summary-value').html(newData.summary_html);
+    element.find('.image-value img').attr('src', newData.image);
+    element.find('.thumb_image-value img').attr('src', newData.thumb_image);
+  }
+}

@@ -1,3 +1,34 @@
+body {
+  font-family: $body-text-font-family;
+  font-size: 16px;
+}
+
+section {
+  padding-left: $sections-margin-side;
+  padding-right: $sections-margin-side;
+  clear: both;
+  // margin-bottom: 70px;
+
+  .content {
+    max-width: 100%;
+    width: 900px;
+    margin: auto;
+    padding-top: $sections-margin-vertical;
+    padding-bottom: $sections-margin-vertical;
+  }
+}
+
+.close-section-button {
+  float: right;
+  img {
+    margin: 13px $sections-margin-side;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
 .best_in_place, .form_in_place {
   input, textarea {
     color: #000 !important;
