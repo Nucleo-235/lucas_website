@@ -74,6 +74,13 @@ $(document).ready(function() {
 
     return false;
   });
+
+  if (window.location.hash.length > 1) {
+    var found = $(window.location.hash);
+    if (found && found.length > 0 && found.hasClass('project-item')) {
+      currentStrategy.openProjectWithLink(this, null, window.location.hash);
+    }
+  }
 });
 
 function preventDefaultIfPossible(e) {

@@ -45,17 +45,34 @@
         width: 100%;
 
         .info {
-          width: 70%;
+          width: 100%;
+          max-width: 100%;
           float: left;
           padding-right: 10px;
+          padding-left: 10px;
+          text-align: center;
         }
 
-        .name {
+        .title {
           font-family: $body-text-font-family;
           font-size: 45px;
         }
-        .summary {
+        .name {
+          margin-top: 20px;
           width: 100%;
+          max-width: 100%;
+          text-align: left;
+        }
+
+        .summary, .title{
+          margin-top: 20px;
+          width: 100%;
+          max-width: 100%;
+          text-align: center;
+          textarea {
+            width: 100%;
+            max-width: 100%;
+          }
         }
 
         .images {

@@ -48,15 +48,18 @@ var desktopStrategy = {
     if (existentElement && existentElement.length > 0) {
       doShow(projectID, existentElement)
     } else {
-      link.addClass('loading');
+      if (link)
+        link.addClass('loading');
       $.get({ url: '/projects/' + projectID + '.json', contentType: "application/json;", dataType: "json" })
         .done(function(data) {
           var project = data;
           var clonedElement = cloneItem(projectTemplate, project, project.slug);
           setNewProjectValues(clonedElement, project);
 
-          link.removeClass('loading');
-          link.removeClass('error');
+          if (link) {
+            link.removeClass('loading');
+            link.removeClass('error');
+          }
 
           clonedElement.appendTo(projectListContainer);
           InplaceEditingManager.bindAll('#' + project.slug);

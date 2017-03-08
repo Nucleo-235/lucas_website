@@ -30,12 +30,13 @@ section#portfolio
               .logo-image 
                 = image_editor(project, :logo_image)
             .info
-              .name
-                strong.name-value = string_editor(project, :name)
+              - if @can_edit
+                .name
+                  strong.name-value = string_editor(project, :name)
+              .title
+                  strong.name-value = string_editor(project, :title)
               .summary.summary-value
                  = text_editor(project, :summary)
-              - if @can_edit
-                // TODO categories drop down
 
       .actions
         a.close-project href="" title="#{t('global.close')}"
