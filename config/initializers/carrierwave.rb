@@ -4,7 +4,7 @@ CarrierWave.configure do |config|
     config.aws_bucket =  "lucas.website.live"
   elsif (Rails.env.development? && Rails.application.secrets.aws_access_key_id.present?)
     config.storage = :aws
-    config.aws_bucket =  "lucas.website.dev"
+    config.aws_bucket =  "lucas.website.staging"
   else
     config.storage = :file
     config.aws_bucket =  "lucas.website"
