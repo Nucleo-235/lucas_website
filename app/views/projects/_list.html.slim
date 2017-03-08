@@ -2,7 +2,7 @@ section#portfolio
   .project-gallery class="#{@projects.length % 2 == 0 ? '' : 'odd' }"
     - @projects.each_with_index do |project, index|
       .project-thumb id="#{project.slug}-thumb" class="#{@can_edit ? 'admin' : ''}"
-        a.item-container href="##{project.slug}"
+        a.open-project.item-container href="##{project.slug}"
           .images
             / = image_bg_editor(project, :thumb_image, :div, { :class => 'thumb-image' })
               img src="#{project.thumb_image}"
@@ -16,5 +16,27 @@ section#portfolio
   - if @can_edit
     #new-project
       = render partial: 'projects/form', locals: { project: @new_project }
+  - if @projects.length > 0
+    .project-container
 
-// Só o primeiro será carregado (no caso do mobile), os demais serão carregados via JS
+      .project-list
+        // Só o primeiro será carregado (no caso de mobile sem estar logado), os demais serão carregados via JS
+        - projects_in_view = mobile_device? && !@can_edit ? [@projects.first] : @projects
+        - projects_in_view.each do |project|
+          .project-item id="#{project.slug}" class="#{@can_edit ? 'admin' : ''}"
+            .images
+              = image_bg_editor(project, :thumb_image, :div, { :class => 'thumb-image' })
+                img src="#{project.thumb_image}"
+              .logo-image 
+                = image_editor(project, :logo_image)
+            .info
+              .name
+                strong.name-value = string_editor(project, :name)
+              .summary.summary-value
+                 = text_editor(project, :summary)
+              - if @can_edit
+                // TODO categories drop down
+
+      .actions
+        a.close-project href="" title="#{t('global.close')}"
+          img src="#{image_path('icone-fechar-janela.png')}" alt="#{t('global.close')}"

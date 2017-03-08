@@ -52,14 +52,23 @@ class ProjectContentsController < ApplicationController
     end
   end
 
-  private
+  protected
+
+    def project_content_type_key
+      :project_content
+    end
+
+    def project_content_type
+      ProjectContent
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_project_content
-      @project_content = ProjectContent.find(params[:id])
+      @project_content = project_content_type.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def project_content_params
-      params.require(:project_content).permit(:project_id, :type, :title, :value, :value_cache, :link)
+      params.require(project_content_type_key).permit(:project_id, :type, :title, :value, :value_cache, :link)
     end
 end

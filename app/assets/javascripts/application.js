@@ -48,6 +48,9 @@ $(document).ready(function() {
   $('.open-project').click(function(e) {
     return currentStrategy.openProject(e, this);
   });
+  $('.close-project').click(function(e) {
+    return currentStrategy.closeProject(e, this);
+  });
 
   $('.open-new-project').click(function(e) {
     return currentStrategy.openNewProject(e, this);

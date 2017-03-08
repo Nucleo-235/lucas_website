@@ -1,0 +1,96 @@
+#portfolio {
+  .project-container {
+    display: none;
+
+    position: absolute;
+    height: auto;
+    top: 0px;
+    right: 0px;
+    min-height: 100%;
+    width: 100%;
+
+    padding: 0px;
+    overflow: hidden;
+    overflow-y: visible;
+
+    &:before {
+      content: "";
+      position: fixed;
+      display: block;
+      width: 100%;
+      top: 0px;
+      bottom: 0px;
+      padding: 0px;
+      background-color: transparentize($base-white, 0.1);
+      z-index: 2001;
+
+      opacity: 1;
+      transition: right 0.5s ease-out;
+      // right: -100vw;
+    }
+
+    .project-list {
+      position: relative;
+      z-index: 2002;
+      width: 100%;
+      max-width: 1080px;
+      margin: auto;
+
+      .project-item, .template {
+        display: none;
+        float: left;
+
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+
+        .info {
+          width: 70%;
+          float: left;
+          padding-right: 10px;
+        }
+
+        .name {
+          font-family: $body-text-font-family;
+          font-size: 45px;
+        }
+        .summary {
+          width: 100%;
+        }
+
+        .images {
+          position: relative;
+          float: left;
+
+          .thumb-image {
+            position: relative;
+            height: auto;
+
+            img {
+              display: block;
+              visibility: hidden;
+              width: 100%;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+
+    & > .actions {
+      position: relative;
+      z-index: 2003;
+      width: 100%;
+      max-width: 1080px;
+      margin: auto;
+      top: 30px;
+
+      .close-project {
+        @extend .close-section-button;
+        float: none;
+        position: absolute;
+        right: 0px;
+      }
+    }
+  }
+}

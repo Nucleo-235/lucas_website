@@ -19,8 +19,17 @@ var desktopStrategy = {
     var link = $(self);
     return this.openProjectWithLink(e, link, link.attr("href"));
   },
+  closeProject: function(e, self) {
+    preventDefaultIfPossible(e);
+
+    $('.open-related-portfolio').removeClass('shown');
+    $('.project-container').hide();
+    if (currentOpenProjectID) {
+      $('#' + currentOpenProjectID).hide();
+    }
+  },
   openProjectWithLink: function(e, link, projectIDWithHash) {
-    preventDefaultWithHash(e, link);
+    // preventDefaultWithHash(e, link);
 
     function doShow(projectID, element) {
       if (currentOpenProjectID) {
@@ -28,11 +37,8 @@ var desktopStrategy = {
         $('#' + currentOpenProjectID).hide();
       }
 
-      $('#portfolio nav').hide();
-      $('#new-project').hide();
-
       $('.open-related-portfolio').addClass('shown');
-      $('.project-list').show();
+      $('.project-container').show();
       element.show();
       currentOpenProjectID = projectID;
     }

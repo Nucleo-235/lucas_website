@@ -13,8 +13,5 @@
 #  side_margin :integer
 #
 
-class ProjectContent < ActiveRecord::Base
-  belongs_to :project
-
-  translates :title, :value, :link
+class VimeoProjectContent < ProjectContent
 end
