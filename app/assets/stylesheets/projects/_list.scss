@@ -3,7 +3,7 @@
   padding-right: 0px;
   vertical-align: top;
 
-  .project-item {
+  .project-thumb {
     display: inline-block;
     width: 100%;
     padding-top: 50%;
@@ -103,16 +103,19 @@
   }
 
   @include mq($from: tablet) {
-    .project-item {
+    .project-thumb {
       width: 50%;
       padding-top: 25%;
+      margin-top: -5px;
+      &:first-child, &:nth-child(2) {
+        margin-top: 0px;
+      }
     }
 
-    &.odd {
-      .project-item {
+    .project-gallery.odd {
+      .project-thumb {
         &:last-child {
           width: 100%;
-          padding-top: 50%;
         }
       }
     }
