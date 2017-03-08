@@ -2,8 +2,10 @@ section#portfolio class="#{@projects.length % 2 == 0 ? '' : 'odd' }"
   // Só o primeiro será carregado (no caso do mobile), os demais serão carregados via JS
   - @projects.each_with_index do |project, index|
     .project-item id="#{project.slug}-thumb" class="#{@can_edit ? 'admin' : ''}"
-      a href="##{project.slug}"
+      a.item-container href="##{project.slug}"
         .images
+          / = image_bg_editor(project, :thumb_image, :div, { :class => 'thumb-image' })
+            img src="#{project.thumb_image}"
           .thumb-image style='background-image:url("#{project.thumb_image}")'
             img src="#{project.thumb_image}"
           .logo-image style='background-image:url("#{project.logo_image}")'
