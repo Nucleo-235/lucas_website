@@ -28,13 +28,3 @@ section {
 a {
   text-decoration: none;
 }
-
-.best_in_place, .form_in_place {
-  input, textarea {
-    color: #000 !important;
-
-  }
-  input:not([type=button]):not([type=reset]):not([type=submit]), textarea {
-    width: 100%;
-  }
-}
