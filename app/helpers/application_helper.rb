@@ -27,16 +27,24 @@ module ApplicationHelper
   end
 
   def vimeo_id(video_url)
-    video_url.sub('https://player.vimeo.com/video/', '').
-      sub('http://player.vimeo.com/video/', '').
-      sub('http://vimeo.com/', '').
-      sub('https://vimeo.com/', '')
+    begin
+      video_url.sub('https://player.vimeo.com/video/', '').
+        sub('http://player.vimeo.com/video/', '').
+        sub('http://vimeo.com/', '').
+        sub('https://vimeo.com/', '')
+    rescue
+      ""
+    end
   end
 
   def youtube_id(video_url)
-    video_url.sub('https://www.youtube.com/watch?v=', '').
-      sub('http://www.youtube.com/watch?v=', '').
-      sub('https://youtu.be/', '').
-      sub('http://youtu.be/', '')
+    begin
+      video_url.sub('https://www.youtube.com/watch?v=', '').
+        sub('http://www.youtube.com/watch?v=', '').
+        sub('https://youtu.be/', '').
+        sub('http://youtu.be/', '')
+    rescue
+      ""
+    end
   end
 end
