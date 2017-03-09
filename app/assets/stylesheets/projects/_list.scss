@@ -32,7 +32,7 @@
         width: 100%;
         top:0px;
         bottom:0px;
-        background-color: transparentize($base-blue-greenish, 0.1);
+        background-color: $base-gray-light;
       }
       .name {
         display: block;
