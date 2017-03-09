@@ -24,19 +24,9 @@ section#portfolio
         - projects_in_view = mobile_device? && !@can_edit ? [@projects.first] : @projects
         - projects_in_view.each do |project|
           .project-item id="#{project.slug}" class="#{@can_edit ? 'admin' : ''}"
-            .images
-              = image_bg_editor(project, :thumb_image, :div, { :class => 'thumb-image' })
-                img src="#{project.thumb_image}"
-              .logo-image 
-                = image_editor(project, :logo_image)
-            .info
-              - if @can_edit
-                .name
-                  strong.name-value = string_editor(project, :name)
-              .title
-                  strong.name-value = string_editor(project, :title)
-              .summary.summary-value
-                 = text_editor(project, :summary)
+            = render partial: 'projects/show', locals: { project: project }
+            - if @can_edit
+              = render partial: 'projects/content_forms', locals: { project: project }
 
       .actions
         a.close-project href="" title="#{t('global.close')}"

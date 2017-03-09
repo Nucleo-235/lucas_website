@@ -1,0 +1,21 @@
+.images
+  = image_bg_editor(project, :thumb_image, :div, { :class => 'thumb-image' })
+    img src="#{project.thumb_image}"
+  .logo-image 
+    = image_editor(project, :logo_image)
+.info
+  - if @can_edit
+    .editing
+      .name
+        label Nome
+        strong.name-value = string_editor(project, :name)
+      .order
+        label Ordem
+        strong.name-value = string_editor(project, :sort_order, "ordem na lista")
+  .title
+    strong.name-value = string_editor(project, :title, "titulo do projeto")
+  .summary.summary-value
+    = text_editor(project, :summary, "descrição do projeto")
+.contents
+  - project.project_contents.order(:sort_order).each do |project_content|
+    = render partial: 'project_contents/show/' + project_content.class.model_name.singular, locals: { project_content: project_content }

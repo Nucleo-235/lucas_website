@@ -1,0 +1,18 @@
+- valid_content = project_content.title.present?
+- has_link = (!local_assigns[:has_link] || has_link) && project_content.link.present?
+- content_title = valid_content_title(project_content)
+- if valid_content
+  = content_tag (has_link ? :a : :div) do |el|
+    - el[:class] = 'link'
+    - if has_link
+      - el[:href] = project_content.link
+      - el[:title] = content_title
+      - el[:target] = '_blank'
+    = content_title
+= content_tag (has_link ? :a : :div) do |el|
+  - el[:class] = 'content-value'
+  - if has_link
+    - el[:href] = project_content.link
+    - el[:title] = content_title
+    - el[:target] = '_blank'
+  = yield

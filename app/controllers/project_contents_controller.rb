@@ -6,18 +6,18 @@ class ProjectContentsController < ApplicationController
   # POST /project_contents
   def show
     respond_to do |format|
-      format.html { redirect_to root_path }
+      format.html { redirect_to root_path(anchor: @project_content.project.slug) }
       format.json { respond_with(@project_content) }
     end
   end
 
   # POST /project_contents
   def create
-    @project_content = ProjectContent.new(project_content_params)
+    @project_content = project_content_type.new(project_content_params)
 
     if @project_content.save
       respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html { redirect_to root_path(anchor: @project_content.project.slug) }
         format.json { respond_with(@project_content) }
       end
     else
@@ -31,7 +31,10 @@ class ProjectContentsController < ApplicationController
   # PATCH/PUT /project_contents/1
   def update
     if @project_content.update(project_content_params)
-      respond_with @project_content
+      respond_to do |format|
+        format.html { redirect_to root_path(anchor: @project_content.project.slug) }
+        format.json { respond_with(@project_content) }
+      end
     else
       respond_to do |format|
         format.html { redirect_to root_path }
@@ -69,6 +72,6 @@ class ProjectContentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def project_content_params
-      params.require(project_content_type_key).permit(:project_id, :type, :title, :value, :value_cache, :link)
+      params.require(project_content_type_key).permit(:project_id, :type, :title, :value, :value_cache, :link, :sort_order, :width, :left_margin, :right_margin)
     end
 end

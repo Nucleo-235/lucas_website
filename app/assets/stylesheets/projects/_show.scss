@@ -51,28 +51,40 @@
           padding-right: 10px;
           padding-left: 10px;
           text-align: center;
-        }
 
-        .title {
-          font-family: $body-text-font-family;
-          font-size: 45px;
-        }
-        .name {
-          margin-top: 20px;
-          width: 100%;
-          max-width: 100%;
-          text-align: left;
-        }
+          & > * {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 100%;
+            text-align: center;
+          }
 
-        .summary, .title{
-          margin-top: 20px;
-          width: 100%;
-          max-width: 100%;
-          text-align: center;
-          textarea {
+          .name, .order {
+            display: block;
+            text-align: left;
+          }
+
+          .summary, .title{
             width: 100%;
             max-width: 100%;
           }
+          .inplace_editor_string {
+            input[type="text"] {
+              width: auto;
+              max-width: 100%;
+            }
+          }
+          .inplace_editor_text {
+            display: block;
+            textarea {
+              width: 100%;
+              max-width: 100%;
+            }
+          }
+        }
+
+        * {
+          font-size: 18px;
         }
 
         .images {
@@ -87,6 +99,48 @@
               display: block;
               visibility: hidden;
               width: 100%;
+              height: auto;
+            }
+          }
+        }
+
+        .contents {
+          width: 100%;
+          max-width: 100%;
+          float: left;
+          margin-top: 40px;
+          padding-right: 10px;
+          padding-left: 10px;
+          text-align: center;
+
+          .project_content {
+            float: left;
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 40px;
+            padding:  0px 10px;
+
+            .sizing {
+              div {
+                display: inline-block;
+              }
+              .width, .margin {
+                display: block;
+              }
+              .margin {
+                .left {
+                  float: left;
+                }
+                .right {
+                  float: right;
+                }
+              }
+            }
+
+            img {
+              max-width: 100%;
               height: auto;
             }
           }

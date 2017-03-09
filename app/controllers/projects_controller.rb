@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   def show
     respond_to do |format|
-      format.html { redirect_to root_path }
+      format.html { redirect_to root_path(anchor: @project.slug) }
       format.json { respond_with(@project) }
     end
   end
@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
 
     if @project.save
       respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html { redirect_to root_path(anchor: @project.slug) }
         format.json { respond_with(@project) }
       end
     else
@@ -31,7 +31,10 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   def update
     if @project.update(project_params)
-      respond_with @project
+      respond_to do |format|
+        format.html { redirect_to root_path(anchor: @project.slug) }
+        format.json { respond_with(@project) }
+      end
     else
       respond_to do |format|
         format.html { redirect_to root_path }

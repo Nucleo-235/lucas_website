@@ -1,0 +1,19 @@
+.new-project-content
+  ul.new-content
+    li 
+      a.show-project-content-form data-type="text" href="" +Texto
+    li 
+      a.show-project-content-form data-type="image" href="" +Imagem
+    li 
+      a.show-project-content-form data-type="youtube" href="" +YouTube
+    li 
+      a.show-project-content-form data-type="vimeo" href="" +Vimeo
+  .project-content-forms
+    .content-form.text
+      = render partial: 'project_contents/form/text_form', locals: { project_content: TextProjectContent.new(project: project) }
+    .content-form.image
+      = render partial: 'project_contents/form/image_form', locals: { project_content: ImageProjectContent.new(project: project) }
+    .content-form.youtube
+      = render partial: 'project_contents/form/video_form', locals: { project_content: YoutubeProjectContent.new(project: project) }
+    .content-form.vimeo
+      = render partial: 'project_contents/form/video_form', locals: { project_content: VimeoProjectContent.new(project: project) }

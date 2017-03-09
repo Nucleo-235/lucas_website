@@ -74,6 +74,15 @@ var desktopStrategy = {
         });
     }
   },
+  openProjectContentForm: function(e, self) {
+    preventDefaultIfPossible(e);
+    var dataType = $(self).attr('data-type');
+
+    $('.project-content-forms .content-form').hide();
+    $('.project-content-forms .content-form.' + dataType).show();
+
+    return false;
+  },
   onTurningOn: function() {
     projectListContainer = $('#portfolio .project-list');
     projectIDs = getProjectIDs();

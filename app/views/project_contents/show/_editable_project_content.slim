@@ -1,0 +1,23 @@
+.editing
+  .title
+    label Titulo (opt)
+    .value = string_editor(project_content, :title, "titulo (opcional)")
+  .link
+    label Link (opt)
+    .value = string_editor(project_content, :link, "link (opcional)")
+  .order
+    label Ordem
+    .value = string_editor(project_content, :sort_order, "ordem")
+  .content-value
+    = yield
+  .sizing
+    .width
+      label Largura (pct)
+      .value = string_editor(project_content, :width)
+    .margin
+      .left
+        label Esq
+        .value = string_editor(project_content, :left_margin, "left") 
+      .right
+        label Dir
+        .value = string_editor(project_content, :right_margin, "right") 

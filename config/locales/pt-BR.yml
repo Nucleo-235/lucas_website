@@ -4,3 +4,9 @@ pt-BR:
     menu: Menu
     open_menu: Abrir Menu
     next: Próximo
+  select_options:
+    project_content:
+      TextProjectContent: texto
+      ImageProjectContent: imagem
+      YoutubeProjectContent: YouTube
+      VimeoProjectContent: Vimeo

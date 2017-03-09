@@ -63,8 +63,8 @@ $(document).ready(function() {
     $('nav#menu').hide();
     $('nav#menu').removeClass('shown');
 
-    $('nav#menu .internal a').removeClass('active');
-    $(this).addClass('active');
+    // $('nav#menu .internal a').removeClass('active');
+    // $(this).addClass('active');
   });
 
   $('section#people .goto-next').click(function(e) {
@@ -73,6 +73,10 @@ $(document).ready(function() {
     $('section#people ul').slick('slickNext');
 
     return false;
+  });
+
+  $('.show-project-content-form').click(function(e) {
+    return currentStrategy.openProjectContentForm(e, this);
   });
 
   if (window.location.hash.length > 1) {

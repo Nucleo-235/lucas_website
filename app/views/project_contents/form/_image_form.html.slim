@@ -3,13 +3,11 @@
 
   .form-inputs
     = f.input :project_id, as: :hidden
-    = f.select :type, ids_to_select_options('project_content', ProjectContent::ProjectContent)
     = f.input :title
-    = f.input :value
     = f.input :link
+    = f.input :value
     .extra-fields
       = f.input :sort_order
-      = f.input :height
       = f.input :width
       = f.input :left_margin
       = f.input :right_margin

@@ -1,0 +1,10 @@
+- valid_content = project_content.title.present?
+- has_link = project_content.link.present?
+- content_title = valid_content_title(project_content)
+.text_project_content.project_content style="#{content_style(project_content)}"
+  - if @can_edit
+    = render layout: 'project_contents/show/editable_project_content', locals: { project_content: project_content } do |args|
+      = text_editor(project_content, :value)
+  - else
+    = render layout: 'project_contents/show/readonly_project_content', locals: { project_content: project_content } do |args|
+      = text_editor(project_content, :value)
