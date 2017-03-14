@@ -60,12 +60,12 @@ var desktopStrategy = {
         $('.project-container .navigation.previous').attr('href', '#' + previousItemId);
         $('.project-container .navigation.next').attr('href', '#' + nextItemId);
 
-        $('.project-container .project-item.previous').removeClass('previous');
-        $('.project-container .project-item.next').removeClass('next');
+        $('.project-container .project-item').removeClass('previous');
+        $('.project-container .project-item').removeClass('next');
+        $('.project-container .project-item').remoteAttr('style');
+        $('.project-container .project-item:not(' + projectIDWithHash + ')').removeClass('shown');
         $('#' + previousItemId).addClass('previous');
         $('#' + nextItemId).addClass('next');
-        $('#' + previousItemId).removeAttr('style');
-        $('#' + nextItemId).removeAttr('style');
       };
 
       $('.open-related-portfolio').addClass('shown');
