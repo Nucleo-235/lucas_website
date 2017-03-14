@@ -12,6 +12,8 @@
       .order
         label Ordem
         strong.name-value = string_editor(project, :sort_order, "ordem na lista")
+      .removal
+        = link_to 'Remover Projeto', project, data: { confirm: "Tem certeza que quer remover o projeto #{project.name}?" }, method: :delete
   .title
     strong.name-value = string_editor(project, :title, "titulo do projeto")
   .summary.summary-value

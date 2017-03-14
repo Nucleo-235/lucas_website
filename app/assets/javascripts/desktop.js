@@ -16,6 +16,7 @@ var desktopStrategy = {
     this.openPortfolio(e, self);
   },
   openProject: function(e, self) {
+    preventDefaultWithHash(e, self);
     var link = $(self);
     return this.openProjectWithLink(e, link, link.attr("href"));
   },

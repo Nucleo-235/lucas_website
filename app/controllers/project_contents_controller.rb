@@ -46,7 +46,10 @@ class ProjectContentsController < ApplicationController
   # DELETE /project_contents/1
   def destroy
     if @project_content.destroy
-      head :no_content
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { head :no_content }
+      end
     else
       respond_to do |format|
         format.html { redirect_to root_path }

@@ -5,6 +5,8 @@
   - if @can_edit
     = render layout: 'project_contents/show/editable_project_content', locals: { project_content: project_content } do |args|
       = image_editor(project_content, :value)
+    .removal
+      = link_to 'Remover Conteudo', project_content, data: { confirm: "Tem certeza que quer remover o conteudo?" }, method: :delete
   - else
     = render layout: 'project_contents/show/readonly_project_content', locals: { project_content: project_content } do |args|
       img src="#{project_content.value}" alt="content_title"
