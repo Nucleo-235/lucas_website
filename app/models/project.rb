@@ -25,5 +25,5 @@ class Project < ActiveRecord::Base
   mount_uploader :logo_image, StandardImageUploader
   mount_uploader :thumb_image, StandardImageUploader
 
-  translates :summary, :title
+  translates :summary, :title, :fallbacks_for_empty_translations => true
 end

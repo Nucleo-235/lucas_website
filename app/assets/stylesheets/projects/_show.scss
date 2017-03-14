@@ -29,6 +29,14 @@
       // right: -100vw;
     }
 
+    .list-container {
+      display: block;
+      width: 100%;
+      max-width: 1080px;
+      margin: auto;
+      overflow-x: hidden;
+    }
+
     .project-list {
       position: relative;
       z-index: 2002;
@@ -40,9 +48,28 @@
         display: none;
         float: left;
 
+        min-width: 100%;
         margin: 0px;
         padding: 0px;
         width: 100%;
+        // left: 0px;
+
+        &.next {
+          margin-right: -100%;
+          display: block;
+          // position: absolute;
+        }
+        &.previous {
+          margin-left: -100%;
+          display: block;
+          // position: absolute;
+        }
+
+        &.shown {
+          display: block;
+          // left: 0px;
+          // right: 0px;
+        }
 
         .info {
           width: 100%;
@@ -148,7 +175,7 @@
       }
     }
 
-    & > .actions {
+    & .actions {
       position: relative;
       z-index: 2003;
       width: 100%;
@@ -161,6 +188,18 @@
         float: none;
         position: absolute;
         right: 0px;
+      }
+
+      .navigation {
+        position: absolute;
+        top: 200px;
+        top: 30vh;
+      }
+      .next {
+        right: 20px;
+      }
+      .previous {
+        left: 20px;
       }
     }
   }

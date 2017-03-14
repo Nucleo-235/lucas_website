@@ -18,16 +18,20 @@ section#portfolio
       = render partial: 'projects/form', locals: { project: @new_project }
   - if @projects.length > 0
     .project-container
+      .list-container
+        .project-list
+          // Só o primeiro será carregado (no caso de mobile sem estar logado), os demais serão carregados via JS
+          - projects_in_view = mobile_device? && !@can_edit ? [@projects.first] : @projects
+          - projects_in_view.each do |project|
+            .project-item id="#{project.slug}" class="#{@can_edit ? 'admin' : ''}"
+              = render partial: 'projects/show', locals: { project: project }
+              - if @can_edit
+                = render partial: 'projects/content_forms', locals: { project: project }
 
-      .project-list
-        // Só o primeiro será carregado (no caso de mobile sem estar logado), os demais serão carregados via JS
-        - projects_in_view = mobile_device? && !@can_edit ? [@projects.first] : @projects
-        - projects_in_view.each do |project|
-          .project-item id="#{project.slug}" class="#{@can_edit ? 'admin' : ''}"
-            = render partial: 'projects/show', locals: { project: project }
-            - if @can_edit
-              = render partial: 'projects/content_forms', locals: { project: project }
-
-      .actions
-        a.close-project href="" title="#{t('global.close')}"
-          img src="#{image_path('icone-fechar-janela.png')}" alt="#{t('global.close')}"
+        .actions
+          a.close-project href="" title="#{t('global.close')}"
+            img src="#{image_path('icone-fechar-janela.png')}" alt="#{t('global.close')}"
+          a.navigation.previous href="" title="#{t('global.previous')}"
+            img src="#{image_path('arrow-left.png')}" alt="#{t('global.previous')}"
+          a.navigation.next href="" title="#{t('global.next')}"
+            img src="#{image_path('arrow-right.png')}" alt="#{t('global.next')}"

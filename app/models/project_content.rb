@@ -22,7 +22,7 @@ class ProjectContent < ActiveRecord::Base
   belongs_to :project
 
   validates_presence_of :project, :type, :value, :width, :sort_order
-  translates :title, :value, :link
+  translates :title, :value, :link, :fallbacks_for_empty_translations => true
 
   Types = ['TextProjectContent', 'ImageProjectContent', 'YoutubeProjectContent', 'VimeoProjectContent']
 end

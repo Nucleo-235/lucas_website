@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery
 //= require bootstrap-sprockets
 //= require best_in_place
 //= require inplace_editing
@@ -67,16 +66,16 @@ $(document).ready(function() {
     // $(this).addClass('active');
   });
 
-  $('section#people .goto-next').click(function(e) {
-    e.preventDefault();
-
-    $('section#people ul').slick('slickNext');
-
-    return false;
-  });
-
   $('.show-project-content-form').click(function(e) {
     return currentStrategy.openProjectContentForm(e, this);
+  });
+
+  $('#portfolio .navigation.next').click(function(e) {
+    return currentStrategy.nextProject(e, this);
+  });
+
+  $('#portfolio .navigation.previous').click(function(e) {
+    return currentStrategy.previousProject(e, this);
   });
 
   if (window.location.hash.length > 1) {

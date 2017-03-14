@@ -3,6 +3,7 @@ en:
     close: Close
     menu: Menu
     open_menu: Open Menu
+    previous: Previous
     next: Next
   select_options:
     project_content:

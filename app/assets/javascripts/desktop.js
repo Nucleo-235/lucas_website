@@ -19,6 +19,16 @@ var desktopStrategy = {
     var link = $(self);
     return this.openProjectWithLink(e, link, link.attr("href"));
   },
+  nextProject: function(e, self) {
+    preventDefaultWithHash(e, self);
+    var link = $(self);
+    return this.openProjectWithLink(e, link, link.attr("href"), { 'margin-right': '0px', 'margin-left': '' }, { 'margin-left': '-100%', 'margin-right': '' });
+  },
+  previousProject: function(e, self) {
+    preventDefaultWithHash(e, self);
+    var link = $(self);
+    return this.openProjectWithLink(e, link, link.attr("href"), { 'margin-right': '', 'margin-left': '0px' }, { 'margin-right': '-100%', 'margin-left': '' });
+  },
   closeProject: function(e, self) {
     preventDefaultIfPossible(e);
 
@@ -28,18 +38,43 @@ var desktopStrategy = {
       $('#' + currentOpenProjectID).hide();
     }
   },
-  openProjectWithLink: function(e, link, projectIDWithHash) {
-    // preventDefaultWithHash(e, link);
-
+  openProjectWithLink: function(e, link, projectIDWithHash, animation, animationBack) {
     function doShow(projectID, element) {
       if (currentOpenProjectID) {
-      // substituir por "slide out" ou só comentar, já que o novo vai ser colocado no lugar
-        $('#' + currentOpenProjectID).hide();
+        if (!animationBack)
+          $('#' + currentOpenProjectID).hide();
+        else
+          $('#' + currentOpenProjectID).animate(animationBack);
+        // element.removeClass('shown');
       }
+
+      function completeShow() {
+        var previousItemId = previousOrLast(element, '.project-item').attr('id');
+        var nextItemId = nextOrFirst(element, '.project-item').attr('id');
+        $('#' + previousItemId).insertBefore(element);
+        $('#' + nextItemId).insertAfter(element);
+        $('#' + previousItemId).removeClass('shown');
+        $('#' + nextItemId).removeClass('shown');
+
+        $('.project-container .navigation.previous').attr('href', '#' + previousItemId);
+        $('.project-container .navigation.next').attr('href', '#' + nextItemId);
+
+        $('.project-container .project-item.previous').removeClass('previous');
+        $('.project-container .project-item.next').removeClass('next');
+        $('#' + previousItemId).addClass('previous');
+        $('#' + nextItemId).addClass('next');
+        $('#' + previousItemId).removeAttr('style');
+        $('#' + nextItemId).removeAttr('style');
+      };
 
       $('.open-related-portfolio').addClass('shown');
       $('.project-container').show();
-      element.show();
+
+      element.addClass('shown');
+      if (!animation)
+        element.show(completeShow);
+      else
+        element.animate(animation, 400, completeShow);
       currentOpenProjectID = projectID;
     }
 
@@ -73,6 +108,7 @@ var desktopStrategy = {
         .always(function() {
         });
     }
+    return false;
   },
   openProjectContentForm: function(e, self) {
     preventDefaultIfPossible(e);
