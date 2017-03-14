@@ -12,4 +12,4 @@
   - else
     = render layout: 'project_contents/show/readonly_project_content', locals: { project_content: project_content, has_link: false } do |args|
       div style="position:relative;height:0;padding-bottom:56.25%"
-        iframe src="https://player.vimeo.com/video/#{vimeo_id(project_content.value)}" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""
+        iframe src="http://player.vimeo.com/video/#{vimeo_id(project_content.value)}" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""
