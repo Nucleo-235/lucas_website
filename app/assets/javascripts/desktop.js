@@ -62,7 +62,7 @@ var desktopStrategy = {
 
         $('.project-container .project-item').removeClass('previous');
         $('.project-container .project-item').removeClass('next');
-        $('.project-container .project-item').remoteAttr('style');
+        $('.project-container .project-item').removeAttr('style');
         $('.project-container .project-item:not(' + projectIDWithHash + ')').removeClass('shown');
         $('#' + previousItemId).addClass('previous');
         $('#' + nextItemId).addClass('next');
