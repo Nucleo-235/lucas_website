@@ -8,12 +8,28 @@
   vertical-align: bottom;
   overflow: hidden;
 
-  background-image: image_url('Capa-portifa.gif');
-  // background-image: none;
+  // background-image: image_url('Capa-portifa.gif');
+  background-image: none;
   background-repeat: repeat;
   background-position: center center;
-
   @include bg_size(cover);
+
+  video { 
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -100;
+      // transform: translateX(-50%) translateY(-50%);
+      background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+      background-size: cover;
+      transition: 1s opacity;
+  }
 
   h1, h2, h3 {
     font-family: $body-text-font-family;
