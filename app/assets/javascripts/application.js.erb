@@ -20,6 +20,7 @@
 //= require cloning
 //= require desktop
 
+<% environment.context_class.instance_eval { include Rails.application.routes.url_helpers } %>
 $(document).ready(function() {
   /* Activating Inplace Editor */
   InplaceEditingManager.bindAll();
@@ -77,6 +78,18 @@ $(document).ready(function() {
 
   $('#portfolio .navigation.previous').click(function(e) {
     return currentStrategy.previousProject(e, this);
+  });
+
+  $('.action.text-me').click(function(e) {
+    preventDefaultIfPossible(e);
+
+    FB.ui({
+      app_id:'1104002159709726',
+      method: 'send',
+      to:'1799883328',
+      link: "<%= root_url(host: ENV['HOST_URL'] || 'lucascordeiro.co') %>",
+      description:'olaaaaaaar'
+    });
   });
 
   if (window.location.hash.length > 1) {
