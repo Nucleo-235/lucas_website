@@ -26,7 +26,6 @@
 
       opacity: 1;
       transition: right 0.5s ease-out;
-      // right: -100vw;
     }
 
     .list-container {
@@ -45,30 +44,13 @@
       margin: auto;
 
       .project-item, .template {
-        display: none;
-        float: left;
-
-        min-width: 100%;
         margin: 0px;
         padding: 0px;
         width: 100%;
-        // left: 0px;
-
-        &.next {
-          margin-right: -100%;
-          display: block;
-          // position: absolute;
-        }
-        &.previous {
-          margin-left: -100%;
-          display: block;
-          // position: absolute;
-        }
+        max-width: 1080px;
 
         &.shown {
           display: block;
-          // left: 0px;
-          // right: 0px;
         }
 
         .info {
@@ -176,7 +158,7 @@
     }
 
     & .actions {
-      position: relative;
+      position: absolute;
       z-index: 2003;
       width: 100%;
       max-width: 1080px;

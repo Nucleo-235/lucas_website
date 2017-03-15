@@ -20,13 +20,12 @@ section#portfolio
     .project-container
       .list-container
         .project-list
-          // Só o primeiro será carregado (no caso de mobile sem estar logado), os demais serão carregados via JS
-          - projects_in_view = mobile_device? && !@can_edit ? [@projects.first] : @projects
-          - projects_in_view.each do |project|
-            .project-item id="#{project.slug}" class="#{@can_edit ? 'admin' : ''}"
-              = render partial: 'projects/show', locals: { project: project }
-              - if @can_edit
-                = render partial: 'projects/content_forms', locals: { project: project }
+          .project-slick
+            - @projects.each do |project|
+              .project-item id="#{project.slug}" class="#{@can_edit ? 'admin' : ''}"
+                = render partial: 'projects/show', locals: { project: project }
+                - if @can_edit
+                  = render partial: 'projects/content_forms', locals: { project: project }
 
         .actions
           a.close-project href="" title="#{t('global.close')}"

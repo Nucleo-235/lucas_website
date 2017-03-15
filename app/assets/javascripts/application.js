@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require best_in_place
 //= require inplace_editing
+//= require slick
 //= require utils
 //= require cloning
 //= require desktop
@@ -104,19 +105,6 @@ $(document).ready(function() {
     vidFade();
   });
 });
-
-function preventDefaultIfPossible(e) {
-  try {
-    e.preventDefault();
-  } catch(ex) { }
-}
-
-function preventDefaultWithHash(e, self) {
-  preventDefaultIfPossible(e);
-  var link = $(self);
-  if (link && link.length > 0)
-    window.location.hash = link.attr('href');
-}
 
 function getProjectIDs() {
   var links = $('#portfolio nav .projects .project a');

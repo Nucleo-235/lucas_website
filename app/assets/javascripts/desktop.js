@@ -23,12 +23,12 @@ var desktopStrategy = {
   nextProject: function(e, self) {
     preventDefaultWithHash(e, self);
     var link = $(self);
-    return this.openProjectWithLink(e, link, link.attr("href"), { 'margin-right': '0px', 'margin-left': '' }, { 'margin-left': '-100%', 'margin-right': '' });
+    return this.openProjectWithLink(e, link, link.attr("href"));
   },
   previousProject: function(e, self) {
     preventDefaultWithHash(e, self);
     var link = $(self);
-    return this.openProjectWithLink(e, link, link.attr("href"), { 'margin-right': '', 'margin-left': '0px' }, { 'margin-right': '-100%', 'margin-left': '' });
+    return this.openProjectWithLink(e, link, link.attr("href"));
   },
   closeProject: function(e, self) {
     preventDefaultIfPossible(e);
@@ -39,43 +39,35 @@ var desktopStrategy = {
       $('#' + currentOpenProjectID).hide();
     }
   },
-  openProjectWithLink: function(e, link, projectIDWithHash, animation, animationBack) {
+  openProjectWithLink: function(e, link, projectIDWithHash) {
     function doShow(projectID, element) {
-      if (currentOpenProjectID) {
-        if (!animationBack)
-          $('#' + currentOpenProjectID).hide();
-        else
-          $('#' + currentOpenProjectID).animate(animationBack);
-        // element.removeClass('shown');
-      }
+      var previousItemId = previousOrLast(element, '.project-item:not(.slick-cloned)').attr('id');
+      var nextItemId = nextOrFirst(element, '.project-item:not(.slick-cloned)').attr('id');
 
-      function completeShow() {
-        var previousItemId = previousOrLast(element, '.project-item').attr('id');
-        var nextItemId = nextOrFirst(element, '.project-item').attr('id');
-        $('#' + previousItemId).insertBefore(element);
-        $('#' + nextItemId).insertAfter(element);
-        $('#' + previousItemId).removeClass('shown');
-        $('#' + nextItemId).removeClass('shown');
-
-        $('.project-container .navigation.previous').attr('href', '#' + previousItemId);
-        $('.project-container .navigation.next').attr('href', '#' + nextItemId);
-
-        $('.project-container .project-item').removeClass('previous');
-        $('.project-container .project-item').removeClass('next');
-        $('.project-container .project-item').removeAttr('style');
-        $('.project-container .project-item:not(' + projectIDWithHash + ')').removeClass('shown');
-        $('#' + previousItemId).addClass('previous');
-        $('#' + nextItemId).addClass('next');
-      };
+      $('.project-container .navigation.previous').attr('href', '#' + previousItemId);
+      $('.project-container .navigation.next').attr('href', '#' + nextItemId);
 
       $('.open-related-portfolio').addClass('shown');
       $('.project-container').show();
 
       element.addClass('shown');
-      if (!animation)
-        element.show(completeShow);
-      else
-        element.animate(animation, 400, completeShow);
+
+      var index = element.attr('data-slick-index');
+      if (currentOpenProjectID) {
+        var currentIndex = $('#' + currentOpenProjectID).attr('data-slick-index');
+        if ((index == currentIndex - 1) || (currentIndex == 0 && index > 1))
+          $('#portfolio .project-list .project-slick').slick('slickPrev');
+        else if ((index == currentIndex + 1) || (index == 0 && currentIndex > 1))
+          $('#portfolio .project-list .project-slick').slick('slickNext');
+        else
+          $('#portfolio .project-list .project-slick').slick('slickGoTo', index);
+      } else
+        $('#portfolio .project-list .project-slick').slick('slickGoTo', index);
+
+      // if (!animation)
+      //   element.show(completeShow);
+      // else
+      //   element.animate(animation, 400, completeShow);
       currentOpenProjectID = projectID;
     }
 
@@ -121,10 +113,16 @@ var desktopStrategy = {
     return false;
   },
   onTurningOn: function() {
-    projectListContainer = $('#portfolio .project-list');
+    projectListContainer = $('#portfolio .project-list .project-slick');
     projectIDs = getProjectIDs();
     currentOpenProjectID = projectIDs.length > 0 ? projectIDs[0] : null;
     projectTemplate = currentOpenProjectID != null ? getClonedTemplate(currentOpenProjectID, projectListContainer) : null;
+
+    $('#portfolio .project-list .project-slick').slick({
+      autoplay: false,
+      arrows: false,
+      infinite: true,
+    });
   },
   onTurningOff: function() {
 
