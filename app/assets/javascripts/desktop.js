@@ -21,14 +21,24 @@ var desktopStrategy = {
     return this.openProjectWithLink(e, link, link.attr("href"));
   },
   nextProject: function(e, self) {
-    preventDefaultWithHash(e, self);
+    preventDefaultIfPossible(e, self);
     var link = $(self);
-    return this.openProjectWithLink(e, link, link.attr("href"));
+    var idWithHash = link.attr("href");
+    this.openProjectWithLink(e, link, link.attr("href"), 'slickNext');
+    // setTimeout(function() {
+    //   window.location.hash = idWithHash;
+    // }, 800);
+    return false;
   },
   previousProject: function(e, self) {
-    preventDefaultWithHash(e, self);
+    preventDefaultIfPossible(e, self);
     var link = $(self);
-    return this.openProjectWithLink(e, link, link.attr("href"));
+    var idWithHash = link.attr("href");
+    this.openProjectWithLink(e, link, idWithHash, 'slickPrev');
+    // setTimeout(function() {
+    //   window.location.hash = idWithHash;
+    // }, 800);
+    return false;
   },
   closeProject: function(e, self) {
     preventDefaultIfPossible(e);
@@ -39,36 +49,31 @@ var desktopStrategy = {
       $('#' + currentOpenProjectID).hide();
     }
   },
-  openProjectWithLink: function(e, link, projectIDWithHash) {
+  openProjectWithLink: function(e, link, projectIDWithHash, slideAnimation) {
     function doShow(projectID, element) {
-      var previousItemId = previousOrLast(element, '.project-item:not(.slick-cloned)').attr('id');
-      var nextItemId = nextOrFirst(element, '.project-item:not(.slick-cloned)').attr('id');
+      var indexOfProject = projectIDs.indexOf(projectID);
+      var previousItemId = (indexOfProject < 1) ? projectIDs[projectIDs.length - 1] : projectIDs[indexOfProject - 1];
+      var nextItemId = (indexOfProject == (projectIDs.length - 1)) ? projectIDs[0] : projectIDs[indexOfProject + 1];
 
-      $('.project-container .navigation.previous').attr('href', '#' + previousItemId);
-      $('.project-container .navigation.next').attr('href', '#' + nextItemId);
+      $('.project-container .move-to-previous').attr('href', '#' + previousItemId);
+      $('.project-container .move-to-next').attr('href', '#' + nextItemId);
 
       $('.open-related-portfolio').addClass('shown');
       $('.project-container').show();
 
+      if (currentOpenProjectID) {
+        stopVideos('#'+ currentOpenProjectID + ' .vimeo_project_content iframe');
+        stopVideos('#'+ currentOpenProjectID + ' .youtube_project_content iframe');
+        $('#' + currentOpenProjectID).removeClass('shown');
+      }
       element.addClass('shown');
+      currentOpenProjectID = projectID;
 
       var index = element.attr('data-slick-index');
-      if (currentOpenProjectID) {
-        var currentIndex = $('#' + currentOpenProjectID).attr('data-slick-index');
-        if ((index == currentIndex - 1) || (currentIndex == 0 && index > 1))
-          $('#portfolio .project-list .project-slick').slick('slickPrev');
-        else if ((index == currentIndex + 1) || (index == 0 && currentIndex > 1))
-          $('#portfolio .project-list .project-slick').slick('slickNext');
-        else
-          $('#portfolio .project-list .project-slick').slick('slickGoTo', index);
+      if (slideAnimation) {
+        $('#portfolio .project-list .project-slick').slick(slideAnimation);
       } else
         $('#portfolio .project-list .project-slick').slick('slickGoTo', index);
-
-      // if (!animation)
-      //   element.show(completeShow);
-      // else
-      //   element.animate(animation, 400, completeShow);
-      currentOpenProjectID = projectID;
     }
 
     var projectID = projectIDWithHash.substring(1);
@@ -122,7 +127,15 @@ var desktopStrategy = {
       autoplay: false,
       arrows: false,
       infinite: true,
+      adaptiveHeight: true
     });
+
+    $('#portfolio .project-list .project-slick').on('afterChange', function(event, slick, currentSlide){
+      if (currentOpenProjectID) {
+        window.location.hash = '#' + currentOpenProjectID;
+      }
+    });
+
   },
   onTurningOff: function() {
 

@@ -30,3 +30,19 @@ function previousOrLast(item, selector) {
   }
   return previous;
 }
+
+function stopVideos(videoSelector) {
+  var frames = $(videoSelector);
+  for (var i = 0; i < frames.length; i++) {
+    var frame = $(frames[i]);
+
+    // saves the current iframe source
+    var vidsrc = frame.attr('src');
+
+    // sets the source to nothing, stopping the video
+    frame.attr('src',''); 
+
+    // sets it back to the correct link so that it reloads immediately on the next window open
+    frame.attr('src', vidsrc);
+  }
+}

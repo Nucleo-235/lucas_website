@@ -72,11 +72,11 @@ $(document).ready(function() {
     return currentStrategy.openProjectContentForm(e, this);
   });
 
-  $('#portfolio .navigation.next').click(function(e) {
+  $('#portfolio .move-to-next').click(function(e) {
     return currentStrategy.nextProject(e, this);
   });
 
-  $('#portfolio .navigation.previous').click(function(e) {
+  $('#portfolio .move-to-previous').click(function(e) {
     return currentStrategy.previousProject(e, this);
   });
 
@@ -120,7 +120,7 @@ $(document).ready(function() {
 });
 
 function getProjectIDs() {
-  var links = $('#portfolio nav .projects .project a');
+  var links = $('#portfolio .project-gallery a.open-project.item-container');
   var IDs = [];
   for (var i = 0; i < links.length; i++) {
     var link = $(links[i]);

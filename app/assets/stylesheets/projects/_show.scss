@@ -172,15 +172,15 @@
         right: 0px;
       }
 
-      .navigation {
+      .move-to-next, .move-to-previous {
         position: absolute;
         top: 200px;
         top: 30vh;
       }
-      .next {
+      .move-to-next {
         right: 20px;
       }
-      .previous {
+      .move-to-previous {
         left: 20px;
       }
     }
