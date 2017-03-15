@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :youtube_project_contents
   resources :vimeo_project_contents
 
-  scope "(:locale)", locale: /pt-BR|en|es/ do
+  scope "(:locale)", locale: /pt-BR|en/ do
     root to: 'pages#home'
   end
   devise_for :users
