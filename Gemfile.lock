@@ -463,14 +463,11 @@ DEPENDENCIES
   rails-erd!
   rails_12factor
   redcarpet (>= 3.0.0)
-  redis
-  redis-namespace
   responders
   rollbar
   rspec-rails (~> 3.0.0.beta)
   sass-rails (>= 3.2)
   shoulda-matchers
-  sidekiq (~> 3.2.6)
   simple_form
   slim
   slim-rails
