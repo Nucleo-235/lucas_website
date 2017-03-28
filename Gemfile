@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby ENV['CUSTOM_RUBY_VERSION'] || '2.2.4'
+ruby '2.2.4'
 gem 'rails', '4.2.5'
 gem 'pg'
 gem 'actionmailer'
@@ -50,6 +50,10 @@ gem 'hashie', '~> 3.4'
 gem 'madmimi'
 gem 'google-analytics-rails'
 gem 'rollbar'
+
+gem 'figaro'
+gem 'puma'
+
 group :development do
   gem 'annotate', '>=2.6.0'
   gem 'pry-rails'
@@ -58,6 +62,13 @@ group :development do
   gem 'xray-rails'
   gem 'rails-erd', github: 'paulwittmann/rails-erd', branch: 'mavericks'
   gem 'letter_opener'
+
+  gem 'capistrano', '3.4.0'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm'
+  gem 'capistrano-sidekiq'
 end
 
 group :test do
