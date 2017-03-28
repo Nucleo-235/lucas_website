@@ -25,9 +25,6 @@ var desktopStrategy = {
     var link = $(self);
     var idWithHash = link.attr("href");
     this.openProjectWithLink(e, link, link.attr("href"), 'slickNext');
-    // setTimeout(function() {
-    //   window.location.hash = idWithHash;
-    // }, 800);
     return false;
   },
   previousProject: function(e, self) {
@@ -35,9 +32,6 @@ var desktopStrategy = {
     var link = $(self);
     var idWithHash = link.attr("href");
     this.openProjectWithLink(e, link, idWithHash, 'slickPrev');
-    // setTimeout(function() {
-    //   window.location.hash = idWithHash;
-    // }, 800);
     return false;
   },
   closeProject: function(e, self) {
@@ -66,7 +60,6 @@ var desktopStrategy = {
         stopVideos('#'+ currentOpenProjectID + ' .youtube_project_content iframe');
         $('#' + currentOpenProjectID).removeClass('shown');
       }
-      element.addClass('shown');
       currentOpenProjectID = projectID;
 
       var index = element.attr('data-slick-index');

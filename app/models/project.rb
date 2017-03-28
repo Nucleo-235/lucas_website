@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
 
-  has_many :project_contents
+  has_many :project_contents, dependent: :destroy
   accepts_nested_attributes_for :project_contents
 
   mount_uploader :logo_image, StandardImageUploader
