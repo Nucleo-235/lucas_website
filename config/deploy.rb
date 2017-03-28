@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'lucas-website'
-set :repo_url, 'git@github.com:Nucleo-235/lucas-website.git' # Edit this to match your repository
+set :repo_url, 'git@github.com:Nucleo-235/lucas_website.git' # Edit this to match your repository
 set :branch, :live
 
 set :deploy_to, '/home/deploy-lucas/lucas-website'
