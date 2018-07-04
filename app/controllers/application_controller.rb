@@ -23,8 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_localizable_value_changed(value)
-    puts "after_localizable_value_changed after_localizable_value_changed"
-    logger.debug "after_localizable_value_changed after_localizable_value_changed"
     @global_page.reset_cache
     @current_page.reset_cache
   end
